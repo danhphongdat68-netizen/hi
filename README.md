@@ -1,47 +1,36 @@
-# BÁO CÁO THỰC HÀNH: BẢO MẬT TRÊN CLOUD
+---
 
-## THỰC HÀNH 1: Quản lý IAM Users và Groups
-(Phần này bạn đã làm xong ở trên, hãy giữ lại hoặc dán tiếp vào đây)
+## THỰC HÀNH 3: Quản lý chi phí với Budgets (1 tiết)
+
+**Mục tiêu:** Tạo ngân sách dự kiến và thiết lập cảnh báo khi chi phí vượt ngưỡng.
+
+### Bước 1: Truy cập thiết lập Budget
+1. Mở menu chính (ba dấu gạch ngang) $\rightarrow$ **Billing & Cost Management**.
+2. Chọn mục **Budgets** $\rightarrow$ Nhấn nút **Create Budget**.
+
+### Bước 2: Thiết lập thông số ngân sách
+* **Name:** `Monthly_Limit_50` (Ví dụ: Giới hạn 50$).
+* **Target Compartment:** Chọn Compartment của bạn (hoặc Root).
+* **Budget Amount:** Nhập số tiền giới hạn (Ví dụ: `50`).
+* **Day of month to begin:** `1` (Bắt đầu từ ngày đầu tháng).
+
+### Bước 3: Thiết lập cảnh báo (Alerts)
+Thiết lập để hệ thống gửi Email khi chi phí chạm ngưỡng:
+1. **Threshold Type:** Percentage (Phần trăm).
+2. **Threshold Metric:** Actual Cost (Chi phí thực tế).
+3. **Threshold Percentage:** `80%` (Cảnh báo khi dùng hết 80% ngân sách).
+4. **Email Recipients:** Nhập địa chỉ email của bạn.
+5. **Message:** `Cảnh báo: Chi tiêu Cloud đã chạm mức 80%!`
+
+### Bước 4: Kiểm tra và Quản lý
+* Sau khi nhấn **Create**, danh sách Budget sẽ hiện ra với thanh trạng thái màu sắc.
+* **Màu xanh:** Chi tiêu an toàn.
+* **Màu đỏ:** Đã vượt ngưỡng thiết lập.
 
 ---
 
-## THỰC HÀNH 2: Cấu hình MFA (Multi-Factor Authentication)
-
-**Mục tiêu:** Kích hoạt xác thực 2 yếu tố để bảo vệ tài khoản.
-
-### Bước 1: Cài đặt ứng dụng Authenticator
-Trên điện thoại cá nhân, cài đặt một trong các ứng dụng sau:
-* **Google Authenticator** (iOS/Android)
-* **Microsoft Authenticator** (iOS/Android)
-* **Authy** (iOS/Android)
-
-### Bước 2: Bật MFA cho User
-Thực hiện các thao tác sau trên Console OCI:
-1. Click vào **Profile Icon** (góc trên bên phải) $\rightarrow$ **My Profile**.
-2. Tìm mục **Auth Tokens** $\rightarrow$ **MFA** $\rightarrow$ chọn **Enable Multi-Factor Authentication**.
-3. Chọn loại: **Time-based One-Time Password (TOTP)**.
-4. Dùng app Authenticator trên điện thoại để **Quét mã QR**.
-5. App sẽ hiển thị mã 6 chữ số (thay đổi mỗi 30 giây).
-6. Nhập mã vào Console để **Verify**.
-7. **Lưu lại Recovery Codes** (cực kỳ quan trọng để dùng khi mất điện thoại).
-8. Nhấn **Enable**.
-
-### Bước 3: Kiểm tra (Test MFA)
-1. **Logout** tài khoản.
-2. **Login lại:** Sau khi nhập Password, hệ thống sẽ yêu cầu nhập **MFA code**.
-3. Mở app trên điện thoại, lấy mã 6 số và nhập vào.
-4. Đăng nhập thành công ✅.
-
-### Bước 4: Quy trình khôi phục (Recovery)
-*Trường hợp mất điện thoại hoặc không có MFA code:*
-1. Tại trang Login, chọn **"I can't access my verification code"**.
-2. Nhập **Recovery Code** đã lưu ở Bước 2.
-3. Hệ thống sẽ cho phép **Disable MFA**.
-4. Thiết lập lại MFA trên thiết bị mới.
-
----
-
-### 🛡️ Best Practice cho MFA
-- [x] Bật MFA cho **TẤT CẢ** users, đặc biệt là tài khoản Admin.
-- [x] Lưu Recovery Codes ở nơi an toàn (như Password Manager).
-- [x] Định kỳ kiểm tra lại quy trình khôi phục (Recovery process).
+## 🏁 TỔNG KẾT BÀI THỰC HÀNH
+Qua 3 bài thực hành, tôi đã nắm vững:
+1. Cách phân quyền an toàn với **IAM Users & Groups**.
+2. Cách bảo vệ tài khoản tối đa với **MFA**.
+3. Cách kiểm soát túi tiền, tránh phát sinh chi phí ngoài ý muốn với **Budgets**.
