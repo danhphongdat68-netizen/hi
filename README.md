@@ -1,64 +1,30 @@
-# PHẦN 2: THỰC HÀNH (4 tiết)
+# BÁO CÁO BÀI TẬP THỰC HÀNH: QUẢN LÝ IAM TRÊN OCI
 
-## THỰC HÀNH 1: Tạo và quản lý IAM Users, Groups (1 tiết)
-
-**Mục tiêu:** Tạo users, groups, gán quyền
-
----
-
-### Bước 1: Tạo IAM Groups
-
-Thực hiện theo các bước sau trong Console:
-1.  **Oracle Cloud Console**
-2.  **Identity & Security** $\rightarrow$ **Domains** $\rightarrow$ **Default Domain**
-3.  **Groups** $\rightarrow$ **Create Group**
-
-**Danh sách Groups cần tạo:**
-
-| Group Name (Name) | Description |
-| :--- | :--- |
-| **developers** | Development team members |
-| **dbadmins** | Database administrators |
-| **readonly** | Read-only access for auditors |
+**Họ và tên:** [Điền tên bạn vào đây]  
+**Mã số sinh viên:** [Điền MSSV vào đây]  
+**Lớp:** [Điền lớp vào đây]
 
 ---
 
-### Bước 2: Tạo IAM Users
+## 1. Kết quả tạo Groups và Users
+Tôi đã khởi tạo thành công các nhóm và người dùng trong Default Domain.
 
-Thực hiện theo các bước sau trong Console:
-1.  **Users** $\rightarrow$ **Create User**
+* **Groups:** `developers`, `dbadmins`, `readonly`.
+* **Users:** `alice.dev`, `bob.dba`, `charlie.auditor`.
 
-**Danh sách Users cần tạo:**
-
-* **User 1:**
-    * Username: `alice.dev`
-    * Email: `alice@company.com`
-    * Groups: `developers`
-* **User 2:**
-    * Username: `bob.dba`
-    * Email: `bob@company.com`
-    * Groups: `dbadmins`
-* **User 3:**
-    * Username: `charlie.auditor`
-    * Email: `charlie@company.com`
-    * Groups: `readonly`
-
-> **Lưu ý:** Mỗi user sẽ nhận email để set password lần đầu.
+> **[HÀNH ĐỘNG]:** Bạn hãy chụp ảnh màn hình danh sách Users trên OCI của bạn, sau đó kéo và thả trực tiếp tấm ảnh đó vào dòng này trong trình soạn thảo GitHub. Nó sẽ tự hiện mã ảnh dạng `![image](...)`.
 
 ---
 
-### Bước 3: Tạo Policies (Chính sách)
+## 2. Thiết lập Policies (Chính sách)
+Tôi đã cấu hình các quyền hạn cụ thể bằng Manual Editor:
 
-**1. Policy 1: Developers có quyền quản lý VM**
-
-Thực hiện:
-1.  **Identity & Security** $\rightarrow$ **Policies** $\rightarrow$ **Create Policy**
-2.  Name: `DevelopersComputeAccess`
-3.  Description: `Allow developers to manage compute instances`
-4.  Policy Builder $\rightarrow$ **Manual Editor**
-
-**Policy statement:**
 ```sql
+-- Quyền cho nhóm Developers
 Allow group developers to manage instance-family in compartment <your-compartment>
-Allow group developers to read virtual-network-family in compartment <your-compartment>
-Allow group developers to use volume-family in compartment <your-compartment>
+
+-- Quyền cho nhóm DBAdmins
+Allow group dbadmins to manage database-family in compartment <your-compartment>
+
+-- Quyền cho nhóm ReadOnly
+Allow group readonly to read all-resources in compartment <your-compartment>
