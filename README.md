@@ -1,8 +1,8 @@
 # BÁO CÁO BÀI TẬP THỰC HÀNH: QUẢN LÝ IAM TRÊN OCI
 
-**Họ và tên:** [Điền tên bạn vào đây]  
-**Mã số sinh viên:** [Điền MSSV vào đây]  
-**Lớp:** [Điền lớp vào đây]
+**Họ và tên:** [Danh Đạt]  
+**Mã số sinh viên:** [33407CNTT]  
+**Lớp:** [2404CNTT]
 
 ---
 
